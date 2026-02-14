@@ -1,0 +1,1105 @@
+/* =============================================================
+   SAN VALENTÍN — STYLES.CSS
+   Tipografías: Playfair Display + Cormorant Garamond
+   Paleta: Rosas suaves, burdeos, dorado, blanco cremoso
+   ============================================================= */
+
+/* ----- VARIABLES GLOBALES ----- */
+:root {
+    /* Colores principales */
+    --color-bg:           #fff7f8;
+    --color-bg-dark:      #2d0a1a;
+    --color-bg-warm:      #fff0f3;
+    --color-primary:      #c2185b;
+    --color-primary-soft: #e91e63;
+    --color-accent:       #d4a574;
+    --color-accent-light: #f0d9c0;
+    --color-rose:         #f8bbd0;
+    --color-rose-deep:    #880e4f;
+    --color-blush:        #fce4ec;
+    --color-white:        #fffbfc;
+    --color-text:         #3d1a2a;
+    --color-text-light:   #6d4c5e;
+    --color-gold:         #c9a84c;
+    --color-gold-soft:    #e8d5a3;
+
+    /* Tipografía */
+    --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    --font-body:    'Cormorant Garamond', Georgia, serif;
+
+    /* Espaciado */
+    --space-xs:  0.5rem;
+    --space-sm:  1rem;
+    --space-md:  2rem;
+    --space-lg:  4rem;
+    --space-xl:  6rem;
+    --space-xxl: 8rem;
+
+    /* Transiciones */
+    --ease-romantic: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-bounce:   cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    /* Sombras */
+    --shadow-soft:   0 4px 20px rgba(194, 24, 91, 0.08);
+    --shadow-medium: 0 8px 40px rgba(194, 24, 91, 0.12);
+    --shadow-warm:   0 10px 50px rgba(194, 24, 91, 0.15);
+    --shadow-glow:   0 0 30px rgba(233, 30, 99, 0.2);
+}
+
+/* ----- RESET & BASE ----- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ----- UTILIDADES ----- */
+.container {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.highlight {
+    color: var(--color-primary);
+    font-style: italic;
+    position: relative;
+}
+
+.highlight::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ----- ANIMACIÓN FADE-IN SCROLL ----- */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s var(--ease-romantic),
+                transform 0.8s var(--ease-romantic);
+}
+
+.fade-in-up.delay-1 { transition-delay: 0.2s; }
+.fade-in-up.delay-2 { transition-delay: 0.4s; }
+.fade-in-up.delay-3 { transition-delay: 0.6s; }
+
+.fade-in-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =============================================================
+   CORAZONES FLOTANTES — FONDO
+   ============================================================= */
+.floating-hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    bottom: -60px;
+    color: var(--color-rose);
+    font-size: 1.2rem;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    will-change: transform, opacity;
+}
+
+.h1  { left:  5%; font-size: 0.9rem;  animation-duration: 18s; animation-delay: 0s;   color: rgba(248,187,208,0.4); }
+.h2  { left: 12%; font-size: 1.4rem;  animation-duration: 22s; animation-delay: 2s;   color: rgba(194,24,91,0.15);  }
+.h3  { left: 20%; font-size: 0.7rem;  animation-duration: 16s; animation-delay: 4s;   color: rgba(248,187,208,0.35);}
+.h4  { left: 28%; font-size: 1.1rem;  animation-duration: 25s; animation-delay: 1s;   color: rgba(212,165,116,0.25);}
+.h5  { left: 35%; font-size: 0.8rem;  animation-duration: 20s; animation-delay: 6s;   color: rgba(248,187,208,0.3); }
+.h6  { left: 45%; font-size: 1.3rem;  animation-duration: 23s; animation-delay: 3s;   color: rgba(194,24,91,0.12);  }
+.h7  { left: 55%; font-size: 0.6rem;  animation-duration: 17s; animation-delay: 5s;   color: rgba(248,187,208,0.35);}
+.h8  { left: 62%; font-size: 1rem;    animation-duration: 21s; animation-delay: 7s;   color: rgba(212,165,116,0.2); }
+.h9  { left: 70%; font-size: 1.5rem;  animation-duration: 24s; animation-delay: 0.5s; color: rgba(194,24,91,0.1);   }
+.h10 { left: 78%; font-size: 0.75rem; animation-duration: 19s; animation-delay: 4.5s; color: rgba(248,187,208,0.3); }
+.h11 { left: 85%; font-size: 1.2rem;  animation-duration: 26s; animation-delay: 2.5s; color: rgba(194,24,91,0.12);  }
+.h12 { left: 92%; font-size: 0.85rem; animation-duration: 20s; animation-delay: 8s;   color: rgba(248,187,208,0.25);}
+.h13 { left: 40%; font-size: 0.65rem; animation-duration: 22s; animation-delay: 9s;   color: rgba(212,165,116,0.2); }
+.h14 { left: 15%; font-size: 1.1rem;  animation-duration: 27s; animation-delay: 3.5s; color: rgba(248,187,208,0.2); }
+.h15 { left: 50%; font-size: 0.9rem;  animation-duration: 19s; animation-delay: 6.5s; color: rgba(194,24,91,0.1);   }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg) scale(0.5);
+        opacity: 0;
+    }
+}
+
+/* =============================================================
+   HERO — SECCIÓN PRINCIPAL
+   ============================================================= */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: linear-gradient(
+        135deg,
+        #2d0a1a 0%,
+        #4a1130 25%,
+        #6b1839 50%,
+        #4a1130 75%,
+        #2d0a1a 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.hero__veil {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        ellipse at 50% 50%,
+        rgba(194, 24, 91, 0.15) 0%,
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50%      { background-position: 100% 50%; }
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    padding: var(--space-md);
+    max-width: 700px;
+}
+
+/* ----- Corazón que late ----- */
+.hero__beating-heart {
+    margin: 0 auto var(--space-md);
+    width: 60px;
+    height: 60px;
+    animation: heartbeat 1.4s ease-in-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s var(--ease-bounce);
+}
+
+.hero__beating-heart:hover {
+    transform: scale(1.3);
+}
+
+.beating-svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-primary);
+    filter: drop-shadow(0 0 20px rgba(233, 30, 99, 0.5));
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15%      { transform: scale(1.15); }
+    30%      { transform: scale(1); }
+    45%      { transform: scale(1.1); }
+    60%      { transform: scale(1); }
+}
+
+.hero__prelude {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 300;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--color-rose);
+    margin-bottom: var(--space-sm);
+}
+
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    font-weight: 600;
+    color: var(--color-white);
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 2px 30px rgba(194, 24, 91, 0.3);
+}
+
+.hero__subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--color-rose);
+    opacity: 0.9;
+    margin-bottom: var(--space-lg);
+}
+
+/* ----- Indicador de scroll ----- */
+.hero__scroll-hint {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+    color: rgba(248, 187, 208, 0.6);
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.scroll-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid var(--color-rose);
+    border-bottom: 2px solid var(--color-rose);
+    transform: rotate(45deg);
+    animation: scrollBounce 2s ease-in-out infinite;
+    opacity: 0.5;
+}
+
+@keyframes scrollBounce {
+    0%, 100% { transform: rotate(45deg) translateY(0); }
+    50%      { transform: rotate(45deg) translateY(8px); }
+}
+
+/* =============================================================
+   SECCIÓN TÍTULOS
+   ============================================================= */
+.section-title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 500;
+    text-align: center;
+    color: var(--color-rose-deep);
+    margin-bottom: var(--space-lg);
+    line-height: 1.3;
+}
+
+.section-title--light {
+    color: var(--color-white);
+}
+
+.section-title__deco {
+    display: inline-block;
+    margin: 0 0.3em;
+    font-size: 0.6em;
+    vertical-align: middle;
+    color: var(--color-accent);
+    animation: sparkle 2s ease-in-out infinite;
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.2); }
+}
+
+/* =============================================================
+   NUESTRA HISTORIA
+   ============================================================= */
+.story {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: var(--color-bg);
+    z-index: 1;
+}
+
+.story__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+@media (min-width: 768px) {
+    .story__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-xl);
+    }
+}
+
+/* ----- Marco de foto ----- */
+.story__photo-frame {
+    text-align: center;
+}
+
+.photo-frame {
+    position: relative;
+    display: inline-block;
+    max-width: 380px;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-warm);
+    transition: transform 0.6s var(--ease-romantic),
+                box-shadow 0.6s var(--ease-romantic);
+}
+
+.photo-frame:hover {
+    transform: translateY(-8px) rotate(-1deg);
+    box-shadow: var(--shadow-glow);
+}
+
+.photo-frame__img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    transition: transform 0.8s var(--ease-romantic);
+    background: linear-gradient(135deg, var(--color-blush), var(--color-rose));
+}
+
+.photo-frame:hover .photo-frame__img {
+    transform: scale(1.05);
+}
+
+.photo-frame__border {
+    position: absolute;
+    inset: 8px;
+    border: 2px solid rgba(212, 165, 116, 0.4);
+    border-radius: 14px;
+    pointer-events: none;
+    transition: border-color 0.6s var(--ease-romantic);
+}
+
+.photo-frame:hover .photo-frame__border {
+    border-color: rgba(212, 165, 116, 0.8);
+}
+
+.story__date {
+    margin-top: var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--color-text-light);
+}
+
+/* ----- Mensaje principal ----- */
+.story__message {
+    padding: var(--space-md) 0;
+}
+
+.message-line {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    line-height: 1.85;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s var(--ease-romantic),
+                transform 0.8s var(--ease-romantic);
+    transition-delay: calc(var(--line-delay, 0) * 0.3s);
+}
+
+.story__message.is-visible .message-line,
+.is-visible .message-line {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.message-line.signature {
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
+    color: var(--color-primary);
+    margin-top: var(--space-md);
+}
+
+/* =============================================================
+   RAZONES POR LAS QUE TE AMO
+   ============================================================= */
+.reasons {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-blush) 50%, var(--color-bg) 100%);
+    z-index: 1;
+}
+
+.reasons__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+}
+
+@media (min-width: 600px) {
+    .reasons__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    .reasons__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.reason-card {
+    background: var(--color-white);
+    border-radius: 20px;
+    padding: var(--space-md) var(--space-sm);
+    text-align: center;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.5s var(--ease-romantic),
+                box-shadow 0.5s var(--ease-romantic);
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+    transition-delay: calc(var(--card-delay, 0) * 0.1s);
+}
+
+.reason-card::before {
+    content: '♥';
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    font-size: 5rem;
+    color: rgba(248, 187, 208, 0.1);
+    transition: color 0.5s var(--ease-romantic),
+                transform 0.5s var(--ease-romantic);
+    pointer-events: none;
+}
+
+.reason-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-medium);
+}
+
+.reason-card:hover::before {
+    color: rgba(194, 24, 91, 0.1);
+    transform: scale(1.1) rotate(10deg);
+}
+
+.reason-card__number {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-rose);
+    margin-bottom: var(--space-xs);
+    transition: color 0.3s var(--ease-romantic);
+}
+
+.reason-card:hover .reason-card__number {
+    color: var(--color-primary);
+}
+
+.reason-card__text {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--color-text-light);
+    line-height: 1.6;
+}
+
+/* =============================================================
+   RECUERDOS — POLAROIDS
+   ============================================================= */
+.memories {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: var(--color-bg);
+    z-index: 1;
+}
+
+.memories__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    justify-items: center;
+}
+
+@media (min-width: 768px) {
+    .memories__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--space-lg);
+    }
+}
+
+.polaroid {
+    background: var(--color-white);
+    padding: 12px 12px 40px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-soft);
+    transform: rotate(var(--polaroid-rotate, 0deg));
+    transition: transform 0.6s var(--ease-bounce),
+                box-shadow 0.6s var(--ease-romantic);
+    cursor: pointer;
+    max-width: 220px;
+    width: 100%;
+    transition-delay: calc(var(--polaroid-delay, 0) * 0.1s);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) translateY(-15px) scale(1.05);
+    box-shadow: var(--shadow-warm);
+    z-index: 10;
+}
+
+.polaroid__inner {
+    overflow: hidden;
+    border-radius: 2px;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, var(--color-blush), var(--color-rose));
+}
+
+.polaroid__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s var(--ease-romantic);
+}
+
+.polaroid:hover .polaroid__img {
+    transform: scale(1.1);
+}
+
+.polaroid__caption {
+    font-family: var(--font-heading);
+    font-size: 0.9rem;
+    font-style: italic;
+    color: var(--color-text-light);
+    text-align: center;
+    margin-top: 12px;
+    transition: color 0.3s var(--ease-romantic);
+}
+
+.polaroid:hover .polaroid__caption {
+    color: var(--color-primary);
+}
+
+/* =============================================================
+   SOBRE / CARTA SECRETA
+   ============================================================= */
+.envelope-section {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: linear-gradient(135deg, var(--color-bg-dark) 0%, #4a1130 50%, var(--color-bg-dark) 100%);
+    z-index: 1;
+    text-align: center;
+    overflow: hidden;
+}
+
+.envelope-section__hint {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-rose);
+    opacity: 0.8;
+    margin-bottom: var(--space-lg);
+}
+
+.envelope-wrapper {
+    display: flex;
+    justify-content: center;
+    perspective: 800px;
+}
+
+/* Checkbox oculto */
+.envelope-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* ----- Sobre ----- */
+.envelope {
+    position: relative;
+    width: min(340px, 85vw);
+    height: min(240px, 60vw);
+    cursor: pointer;
+    display: block;
+}
+
+.envelope__body {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f5e6d3 0%, #eddcc7 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.envelope__body::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: min(170px, 42.5vw) solid transparent;
+    border-right: min(170px, 42.5vw) solid transparent;
+    border-bottom: min(130px, 32vw) solid #e8d4be;
+    z-index: 2;
+}
+
+.envelope__body::after {
+    content: '💌';
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    transition: opacity 0.3s var(--ease-romantic);
+}
+
+.envelope__flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, #e8d4be 0%, #f5e6d3 100%);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    z-index: 5;
+    transform-origin: top center;
+    transition: transform 0.8s var(--ease-romantic);
+    border-radius: 8px 8px 0 0;
+}
+
+/* ----- Carta dentro del sobre ----- */
+.envelope__letter {
+    position: absolute;
+    width: 85%;
+    background: var(--color-white);
+    border-radius: 8px;
+    padding: var(--space-sm) var(--space-sm);
+    text-align: left;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: transform 0.8s var(--ease-romantic) 0.4s,
+                opacity 0.8s var(--ease-romantic) 0.4s;
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+/* ----- Estado abierto ----- */
+.envelope-toggle:checked ~ .envelope .envelope__flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-toggle:checked ~ .envelope .envelope__body::after {
+    opacity: 0;
+}
+
+.envelope-toggle:checked ~ .envelope .envelope__letter {
+    transform: translateY(-60px);
+    opacity: 1;
+}
+
+.letter__greeting {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-primary);
+    margin-bottom: var(--space-xs);
+}
+
+.letter__body {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    line-height: 1.7;
+    margin-bottom: var(--space-xs);
+}
+
+.letter__closing {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin-top: var(--space-sm);
+    line-height: 1.6;
+}
+
+.letter__signature {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--color-primary);
+}
+
+/* =============================================================
+   CONTADOR — NUESTRO TIEMPO JUNTOS
+   ============================================================= */
+.countdown-section {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-warm) 100%);
+    z-index: 1;
+    text-align: center;
+}
+
+.countdown-section__sub {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.countdown__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 80px;
+    padding: var(--space-sm);
+    background: var(--color-white);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    transition: transform 0.3s var(--ease-romantic),
+                box-shadow 0.3s var(--ease-romantic);
+}
+
+.countdown__item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.countdown__number {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 6vw, 3rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1;
+}
+
+.countdown__label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--color-text-light);
+    margin-top: 4px;
+}
+
+.countdown__separator {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-rose);
+    animation: blink 1.2s ease-in-out infinite;
+    align-self: flex-start;
+    margin-top: var(--space-sm);
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.2; }
+}
+
+.countdown-section__footer {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--color-text-light);
+    margin-top: var(--space-lg);
+}
+
+/* =============================================================
+   PROMESA FINAL
+   ============================================================= */
+.promise {
+    position: relative;
+    padding: var(--space-xl) 0;
+    background: linear-gradient(180deg, var(--color-bg-warm) 0%, var(--color-blush) 100%);
+    z-index: 1;
+}
+
+.promise__card {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    background: var(--color-white);
+    border-radius: 30px;
+    padding: var(--space-lg) var(--space-md);
+    box-shadow: var(--shadow-warm);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.6s var(--ease-romantic),
+                box-shadow 0.6s var(--ease-romantic);
+}
+
+.promise__card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-rose), var(--color-primary), var(--color-accent), var(--color-primary), var(--color-rose));
+    background-size: 200% 100%;
+    animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+    0%   { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.promise__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.promise__hearts {
+    font-size: 1.2rem;
+    color: var(--color-rose);
+    letter-spacing: 0.5em;
+    margin: var(--space-sm) 0;
+    animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.promise__title {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    font-weight: 600;
+    color: var(--color-rose-deep);
+    margin-bottom: var(--space-md);
+}
+
+.promise__text {
+    font-family: var(--font-body);
+    font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+    line-height: 2;
+    color: var(--color-text);
+    font-style: italic;
+}
+
+/* =============================================================
+   FOOTER
+   ============================================================= */
+.footer {
+    position: relative;
+    padding: var(--space-lg) 0 var(--space-md);
+    background: linear-gradient(180deg, var(--color-blush) 0%, var(--color-bg-dark) 30%);
+    text-align: center;
+    z-index: 1;
+}
+
+.footer__heart {
+    margin: 0 auto var(--space-md);
+    width: 40px;
+    height: 40px;
+    animation: heartbeat 1.4s ease-in-out infinite;
+}
+
+.footer__heart-svg {
+    width: 100%;
+    height: 100%;
+    fill: var(--color-primary);
+    filter: drop-shadow(0 0 15px rgba(233, 30, 99, 0.4));
+}
+
+.footer__text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-rose);
+    letter-spacing: 0.15em;
+    margin-bottom: var(--space-xs);
+}
+
+.footer__credit {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: rgba(248, 187, 208, 0.7);
+    margin-bottom: var(--space-xs);
+}
+
+.footer__credit strong {
+    color: var(--color-rose);
+    font-weight: 500;
+}
+
+.footer__final {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--color-accent);
+    margin-top: var(--space-sm);
+    animation: sparkle 3s ease-in-out infinite;
+}
+
+/* =============================================================
+   RESPONSIVE — AJUSTES FINOS
+   ============================================================= */
+
+/* Pantallas muy pequeñas */
+@media (max-width: 480px) {
+    .hero__content {
+        padding: var(--space-sm);
+    }
+
+    .hero__beating-heart {
+        width: 45px;
+        height: 45px;
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: var(--space-md);
+    }
+
+    .memories__grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-sm);
+    }
+
+    .polaroid {
+        max-width: 260px;
+    }
+
+    .countdown__item {
+        min-width: 65px;
+        padding: var(--space-xs);
+    }
+
+    .countdown__separator {
+        font-size: 1.5rem;
+    }
+
+    .envelope {
+        width: 280px;
+        height: 200px;
+    }
+
+    .promise__card {
+        padding: var(--space-md) var(--space-sm);
+        border-radius: 20px;
+    }
+
+    .reason-card {
+        padding: var(--space-sm);
+    }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+    .memories__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-sm);
+    }
+}
+
+/* Desktop grande */
+@media (min-width: 1200px) {
+    .story__grid {
+        gap: var(--space-xxl);
+    }
+
+    .photo-frame {
+        max-width: 420px;
+    }
+}
+
+/* =============================================================
+   ACCESIBILIDAD — REDUCE MOTION
+   ============================================================= */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .floating-hearts {
+        display: none;
+    }
+
+    .fade-in-up {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =============================================================
+   DETALLES FINALES — SCROLLBAR PERSONALIZADA
+   ============================================================= */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-rose);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Selección de texto */
+::selection {
+    background: var(--color-rose);
+    color: var(--color-white);
+}
+
+::-moz-selection {
+    background: var(--color-rose);
+    color: var(--color-white);
+}
